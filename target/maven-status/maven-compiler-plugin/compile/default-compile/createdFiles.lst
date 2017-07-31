@@ -1,0 +1,13 @@
+io\github\oliviercailloux\y2017\bibliomr\modele\Event.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Object.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Manifestation.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Person.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Expression.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Item.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Concept.class
+io\github\oliviercailloux\y2017\bibliomr\modele\CorporateBody.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Place.class
+io\github\oliviercailloux\y2017\bibliomr\modele\Work.class
+io\github\oliviercailloux\y2017\bibliomr\servlet\AddWokServlet.class
+io\github\oliviercailloux\y2017\bibliomr\servlet\LoginServlet.class
+io\github\oliviercailloux\y2017\bibliomr\modele\App.class

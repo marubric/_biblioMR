@@ -1,0 +1,33 @@
+<%-- 
+    Document   : removeContact
+    Created on : 30 juil. 2017, 23:36:56
+    Author     : mrubrice
+--%>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Supprimer une oeuvre/title>
+</head>
+	<body>
+		<form method="POST" action="deleteWork">
+            <table>
+                <tr>
+                    <th>Supprimer une oeuvre</th>
+                </tr>
+                <tr>
+                    <td><i>idOeuvre : <input type="text" name="idWork" size="25" /></i></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input class="button" type="submit" value="Submit" />
+                        <input class="button" type="reset" value="Reset" />
+                    </td>
+                </tr>
+            </table>
+        </form>		
+	</body>
+</html>
