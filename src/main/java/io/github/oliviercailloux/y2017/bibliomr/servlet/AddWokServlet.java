@@ -10,6 +10,7 @@ import io.github.oliviercailloux.y2017.bibliomr.session.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +21,33 @@ import javax.servlet.http.HttpServletResponse;
  * @author mrubrice
  */
 public class AddWokServlet extends HttpServlet {
+
+    @EJB
+    private ConceptFacade conceptFacade;
+
+    @EJB
+    private EventFacade eventFacade;
+
+    @EJB
+    private ObjectFacade objectFacade;
+
+    @EJB
+    private PlaceFacade placeFacade;
+
+    @EJB
+    private ItemFacade itemFacade;
+
+    @EJB
+    private ExpressionFacade expressionFacade;
+
+    @EJB
+    private ManifestationFacade manifestationFacade;
+
+    @EJB
+    private WorkFacade workFacade;
+
+    @EJB
+    private PersonFacade personFacade;
     public static final String VUE = "/Web Pages/addWork.jsp";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -30,15 +58,6 @@ public class AddWokServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
     
-        PersonFacade personService = new PersonFacade();
-        WorkFacade workService = new WorkFacade();
-        ManifestationFacade manifestationService = new ManifestationFacade();
-        ExpressionFacade expressionService = new ExpressionFacade();
-        ItemFacade itemService = new ItemFacade();
-        ObjectFacade objectService = new ObjectFacade();
-        PlaceFacade placeService = new PlaceFacade();
-        EventFacade eventService = new EventFacade();
-        ConceptFacade conceptService = new ConceptFacade();
         
         Date date,dateP,exibitD;
         String title, form, context, distCh, intA, nameP,desig,titleP,titleEx,formEx,langEx,contxtEx,criticEx,distEx,ttlMa,editMa,staR,pubPL,publisher,dtMa,srcAcq,typeFace,identifier,provenance;

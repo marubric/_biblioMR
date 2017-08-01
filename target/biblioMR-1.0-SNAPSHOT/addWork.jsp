@@ -92,13 +92,13 @@
 			</tr>
 			<tr>
 			<tr>
-				<td><i>Title : <input type="text" name="street"/></i></td>
+				<td><i>Title : <input type="text" name="ttlMa"/></i></td>
 			</tr>
 			<tr>
 				<td><i>Edition : <input type="text" name="editMa" /></i></td>
 			</tr>
 			<tr>
-				<td><i>Statement Responsibility : <input type="text" name="StaR" /></i></td>
+				<td><i>Statement Responsibility : <input type="text" name="staR" /></i></td>
 			</tr>
 			<tr>
 				<td><i>Publication Place: <input type="text" name="pubPL" /></i></td>
