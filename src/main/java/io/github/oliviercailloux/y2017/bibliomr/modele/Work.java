@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -33,10 +34,10 @@ public class Work implements Serializable {
 
     @ManyToMany
     private List<Person>pers;
-    @OneToMany(mappedBy="works")
+    @OneToMany(mappedBy="work")
     private List<Expression> exprs;
-    @ManyToMany(mappedBy="works")
-    private List<CorporateBody>cbs;
+    @ManyToOne
+    private CorporateBody cbs;
     @ManyToMany(mappedBy="works")
     private List<Place>plcs;
     @ManyToMany(mappedBy="works")
@@ -59,7 +60,7 @@ public class Work implements Serializable {
         this.distinctCharacteristic=distCh;
         pers=new ArrayList<>();
         exprs=new ArrayList<>();
-        cbs=new ArrayList<>();
+        cbs=new CorporateBody();
         plcs=new ArrayList<>();
         Evts=new ArrayList<>();
         objs=new ArrayList<>();
@@ -140,13 +141,14 @@ public class Work implements Serializable {
         this.pers = pers;
     }
 
-    public List<CorporateBody> getCbs() {
+    public CorporateBody getCbs() {
         return cbs;
     }
 
-    public void setCbs(List<CorporateBody> cbs) {
+    public void setCbs(CorporateBody cbs) {
         this.cbs = cbs;
     }
+    
 
     public List<Place> getPlcs() {
         return plcs;
