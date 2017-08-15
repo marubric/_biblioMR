@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package io.github.oliviercailloux.y2017.bibliomr.servlet;
 
 import io.github.oliviercailloux.y2017.bibliomr.modele.*;
 import io.github.oliviercailloux.y2017.bibliomr.session.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -58,52 +57,44 @@ public class AddWokServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
     
-        
-        Date date,dateP,exibitD;
-        String title, form, context, distCh, intA, nameP,desig,titleP,titleEx,formEx,langEx,contxtEx,criticEx,distEx,ttlMa,editMa,staR,pubPL,publisher,dtMa,srcAcq,typeFace,identifier,provenance;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date dateW,dateP,exibitD;
+        String title, form, context, distCh, intA, nameP,desig,titleP;
+        //titleEx,formEx,langEx,contxtEx,criticEx,distEx,ttlMa,editMa,staR,pubPL,publisher,dtMa,srcAcq,typeFace,identifier,provenance;
         
         /*****************WORK*******************/
-        title = request.getParameter("title");
-        form = request.getParameter("form");
-        date = request.getParameter("date");
-        context = request.getParameter("context");
-        distCh = request.getParameter("distinctCharacteristic");
-        intA = request.getParameter("intendeAudience");
-        /*******************Person************************/
-        nameP= request.getParameter("nameP");
-        desig = request.getParameter("desig");
-        titleP = request.getParameter("titleP");
-        dateP = request.getParameter("dateP");
-        /********************Expression****************************/
-        titleEx = request.getParameter("titleEx");
-        formEx = request.getParameter("formEx");
-        langEx = request.getParameter("langEx");
-        contxtEx = request.getParameter("contxtEx");
-        criticEx = request.getParameter("criticEx");
-        distEx = request.getParameter("distEx");
-        /**********************Manifestation*********************************/
-        ttlMa = request.getParameter("ttlMa");
-        editMa = request.getParameter("editMa");
-        staR = request.getParameter("staR");
-        pubPL = request.getParameter("pubPL");
-        publisher = request.getParameter("publisher");
-        dtMa = request.getParameter("dtMa");
-        srcAcq = request.getParameter("srcAcq");
-        typeFace = request.getParameter("typeFace");
-        /************************Item**************************************/
-        identifier = request.getParameter("identifier");
-        provenance = request.getParameter("provenance");
-        exibitD = request.getParameter("exibitD");        
+        
+        try{
+            title = request.getParameter("title");
+            form = request.getParameter("form");
+            String data=request.getParameter("date");
+            dateW =  sdf.parse(data);
+            context = request.getParameter("context");
+            distCh = request.getParameter("characteristic");
+            intA = request.getParameter("audience");        
+            Work wk=new Work(title,form,dateW,context,distCh,intA);
+            
+            data= request.getParameter("dateP");
+            dateP = sdf.parse(data);
+            nameP= request.getParameter("nameP");
+            titleP = request.getParameter("titleP");
+            desig = request.getParameter("desig");
+            Person pers=new Person(nameP,dateP,desig,titleP);
+            
+            // association person with work
+            wk.getPers().add(pers);
+            
+            System.out.println("Creation de l'oeuvre id :"+wk.getId());
+        }catch(ParseException e){
+            System.out.println("Unperseable using "+ sdf);
+        }
         
         
-        Work wk=new Work(title,form,date,context,distCh,intA);
-        Expression exp = new Expression(titleEx, formEx, dateEx, langEx,distEx,contxtEx,criticalEx);
+        /*Expression exp = new Expression(titleEx, formEx, dateEx, langEx,distEx,contxtEx,criticalEx);
         Manifestation manif=new Manifestation(ttlMa,editMa,staR,pubPL,publisher,dtMa,srcAcq,typeFace);
         Item itm=new Item(identifier,provenance,exibitD);
-        Person pers=new Person(nameP,dateP,desig,titleP);
-        
+       
         wk.getExprs().add(exp);
-        wk.getPers().add(pers);
         exp.getManifs().add(manif);
         exp.setWork(wk);
         exp.getPers().add(pers);
@@ -113,6 +104,7 @@ public class AddWokServlet extends HttpServlet {
         workService.create(wk);
         manifestationService.create(manif);
         itemService.create(itm);
+        */
         
         //Object obj=new Object();
         //objectService.create(obj);
@@ -122,11 +114,8 @@ public class AddWokServlet extends HttpServlet {
         //eventService.create(evt);
         //Concept cpt=new Concept();
         //conceptService.create(cpt);
-        
-        
-        System.out.println("Creation de l'oeuvre id :"+wk.getId());
-        System.out.println("Creation de l'expression id :"+exp.getId());
-        System.out.println("Creation de l'item id :"+itm.getId());
+        //System.out.println("Creation de l'expression id :"+exp.getId());
+        //System.out.println("Creation de l'item id :"+itm.getId());
     }
 
 }
